@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+  <canvas id="matrix"></canvas>
+  <div id="app">
+    <div class="wrapper">
+      <div class="content">
+        <h2>NFT Gallery</h2>
+        <p>View your <a id="check" href="#">NFT collection</a> in the metaverse.</p>
+      </div>
+      <div class="footer">
+        <img src="{% static "img/twitter-logo.svg" %}" alt="Twitter Logo" width="35" height="35" />
+        <a class="text" href="https://twitter.com/@_buildspace" target="_blank" rel="noreferrer">
+          built on @_buildspace
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block styles %}
+  <link href="{% static "css/index.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static "js/matrix.js" %}"></script>
+  <script src="{% static "js/wallet.js" %}"></script>
+{% endblock %}
