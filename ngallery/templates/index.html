@@ -6,7 +6,7 @@
   <canvas id="matrix"></canvas>
   <div id="app">
     <div class="wrapper">
-      <div class="content">
+      <div id="content" class="content">
         <h2>NFT Gallery</h2>
         <p>View your <a id="check" href="#">NFT collection</a> in the metaverse.</p>
       </div>
@@ -25,6 +25,7 @@
 {% endblock %}
 
 {% block scripts %}
+  <script src="{% static "js/api.js" %}"></script>
   <script src="{% static "js/matrix.js" %}"></script>
   <script src="{% static "js/wallet.js" %}"></script>
 {% endblock %}

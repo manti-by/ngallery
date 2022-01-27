@@ -1,23 +1,35 @@
-const checkIfWalletIsConnected = async () => {
+const init = async () => {
+  let content = document.getElementById("content")
+
   try {
-    const { solana } = window;
+    const { solana } = window
 
     if (solana.isPhantom) {
-      console.log("Phantom wallet found!");
-
       const response = await solana.connect();
-      console.log("Connected with Public Key:", response.publicKey.toString());
+
+      window.api.upsertWallet({public_key: response.publicKey.toString()}, () => {
+        window.api.getImages((data) => {
+          let result = "<div class='row'>"
+          for (let i in data) {
+            result += "<div class='col-3'><img src='" + data[i]["source"] + "' class='img-fluid img-thumbnail'></div>"
+          }
+          result += "</div>"
+          content.innerHTML = result
+        }, () => {})
+      }, () => {
+        content.innerHTML = "Can't save your wallet, try again later"
+      })
     } else {
-      console.error("Solana object not found! Get a Phantom Wallet 👻")
+      content.innerHTML = "Solana object not found! Get a Phantom Wallet 👻"
     }
   } catch (error) {
-    console.error(error)
+    content.innerHTML = error
   }
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
   const onClick = async () => {
-    await checkIfWalletIsConnected();
+    await init();
   };
   document.getElementById("check").addEventListener("click", onClick);
 })

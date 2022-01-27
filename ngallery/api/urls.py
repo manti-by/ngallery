@@ -1,6 +1,9 @@
-from rest_framework import routers
+from django.urls import path
 
 from .images import ImageViewSet
+from .wallets import WalletViewSet
 
-api_router = routers.DefaultRouter()
-api_router.register(r"images", ImageViewSet)
+urlpatterns = [
+    path("images/", ImageViewSet.as_view(), name="images"),
+    path("wallets/", WalletViewSet.as_view(), name="wallets"),
+]
