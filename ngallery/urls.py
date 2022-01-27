@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
+from ngallery.api.urls import api_router
 from ngallery.home.views import index_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/", include(api_router.urls)),
     path("", index_view, name="index"),
 ]
 
