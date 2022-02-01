@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from rest_framework.mixins import ListModelMixin
+from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -12,10 +12,13 @@ class ImageSerializer(serializers.HyperlinkedModelSerializer):
         fields = ("source", "created_at")
 
 
-class ImageViewSet(ListModelMixin, APIView):
+class ImageViewSet(APIView):
+    renderer_classes = [JSONRenderer, TemplateHTMLRenderer]
     authentication_classes = []
     permission_classes = []
 
     def get(self, request, *args, **kwargs):
-        serializer = ImageSerializer(Image.objects.all(), many=True)
-        return Response(serializer.data)
+        images = Image.objects.all()
+        if request.GET.get("format", "json") == "html":
+            return Response({"images": images}, template_name="images.html")
+        return Response(ImageSerializer(images, many=True).data)

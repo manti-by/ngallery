@@ -1,0 +1,18 @@
+{% load math_tags %}
+
+<div class="images mb-3">
+  {% for image in images %}
+    {% if forloop.first %}
+      <div class="row">
+    {% endif %}
+    <div class="col-3 align-self-center image">
+      <img src="{{ image.source.url }}" class="img-fluid" alt="Image #{{ image.id }}">
+    </div>
+    {% if forloop.counter|modulo:4 == 0 %}
+      </div><div class="row">
+    {% endif %}
+    {% if forloop.last %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
