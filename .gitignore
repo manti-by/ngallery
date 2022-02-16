@@ -1,9 +1,18 @@
-.venv/
 .idea/
+.vscode/
+.DS_Store/
 
 venv/
 media/
 
+**/target/
+
+**/Cargo.lock
+
+.env
+
 __pycache__/
 *.py[cod]
 *$py.class
+
+**/*.rs.bk
