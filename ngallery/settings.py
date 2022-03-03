@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -169,3 +169,10 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 15,
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
 }
+
+
+# Solana settings
+
+SOLANA_NETWORK_URL = os.getenv("SOLANA_NETWORK_URL", "https://api.devnet.solana.com")
+SOLANA_ACCOUNT_ADDRESS = os.getenv("SOLANA_ACCOUNT_ADDRESS")
+SOLANA_PROGRAM_ID = os.getenv("SOLANA_PROGRAM_ID")

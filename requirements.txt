@@ -3,12 +3,16 @@ djangorestframework==3.13.1
 django-filter==21.1
 markdown==3.3.6
 psycopg2-binary==2.9.3
-solana==0.21.0
 pillow==9.0.0
 crispy-bootstrap5==0.6
 
+solana==0.21.0
+anchorpy==0.7.0
+typer==0.4.0
+
 pytest==6.2.5
 pytest-django==4.5.2
+faker==13.0.0
 
 ipython>=8.0.1
 flake8>=4.0.1

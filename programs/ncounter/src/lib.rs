@@ -6,22 +6,18 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 pub mod nvalidator {
     use super::*;
 
-    pub fn init(ctx: Context<AccountContext>) -> ProgramResult {
-        let base_account = &mut ctx.accounts.base_account;
-        base_account.total_images = 0;
+    pub fn create_account(_ctx: Context<CreateContext>) -> ProgramResult {
         Ok(())
     }
 
-    pub fn update(ctx: Context<UpdateContext>) -> ProgramResult {
-        let base_account = &mut ctx.accounts.base_account;
-        base_account.total_images += 1;
+    pub fn update_account(_ctx: Context<UpdateContext>) -> ProgramResult {
         Ok(())
     }
 }
 
 #[derive(Accounts)]
-pub struct AccountContext<'info> {
-    #[account(init, payer = user, space = 8 + 8)]
+pub struct CreateContext<'info> {
+    #[account(init, payer = user, space = 10000)]
     pub base_account: Account<'info, BaseAccount>,
 
     #[account(mut)]
